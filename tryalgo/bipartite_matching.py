@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Bipartie maximum matching
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 __all__ = ["max_bipartite_matching"]
 
 
 
-# snip{
 def augment(u, bigraph, visit, timestamp, match):
     """ find augmenting path starting from u, by recursive DFS """
     for v in bigraph[u]:
@@ -39,4 +33,3 @@ def max_bipartite_matching(bigraph):
     for u in range(nU):
         augment(u, bigraph, visit, u, match)
     return match
-# snip}

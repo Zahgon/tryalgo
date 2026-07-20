@@ -1,26 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Closest pair of points
-trouver la paire de points la plus proche
-
-jill-jênn vie, christoph dürr et louis abraham - 2014-2019
-"""
-# pylint: disable=missing-docstring, redefined-outer-name, redefined-outer-name
-# pylint: disable=no-name-in-module, ungrouped-imports
 
 
 from random import randint
 
 
-# snip{
 from math import hypot   # hypot(dx, dy) = sqrt(dx * dx + dy * dy)
 from math import floor
 from random import shuffle
 
-# snip}
 __all__ = ["closest_points"]
-# snip{
 
 
 def dist(p, q):
@@ -73,19 +62,15 @@ def closest_points(S):
         else:               # r is None: could not improve
             break
     return p, q
-# snip}
 
 
 if __name__ == "__main__":
-    # generates the figure for the book
 
     def tikz_points(S):
-        for p in S:
-            print("\\filldraw[black] (%f, %f) circle (1pt);" % p)
+        pass
 
     def tikz_polygone(S):
-        for i, _ in enumerate(S):
-            print('\\draw (%f, %f) -- (%f, %f);' % (S[i - 1] + S[i]))
+        pass
 
     S = [(randint(0, 400) / 100, randint(0, 400) / 100) for _ in range(32)]
     tikz_points(S)

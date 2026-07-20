@@ -1,16 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Fenwick tree
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
 class Fenwick:
-    """maintains a tree to allow quick updates and queries
-    """
     def __init__(self, t):
         """stores a table t and allows updates and queries
         of prefix sums in logarithmic time.
@@ -21,7 +13,6 @@ class Fenwick:
         for a, v in enumerate(t):
             self.add(a, v)           # initialize
 
-    # pylint: disable=redefined-builtin
     def prefixSum(self, a):
         """
         :param int a: index in t, negative a will return 0
@@ -35,11 +26,7 @@ class Fenwick:
         return total
 
     def intervalSum(self, a, b):
-        """
-        :param int a b: with 0 <= a <= b
-        :returns: t[a] + ... + t[b]
-        """
-        return self.prefixSum(b) - self.prefixSum(a-1)
+        pass
 
     def add(self, a, val):
         """
@@ -51,15 +38,8 @@ class Fenwick:
             self.s[i] += val       # update node
             i += (i & -i)          # parent
 
-    # variante:
-    # pylint: disable=bad-whitespace
     def intervalAdd(self, a, b, val):
-        """Variant, adds val to t[a], to t[a + 1] ... and to t[b]
-
-        :param int a b: with 0 <= a <= b < len(t)
-        """
-        self.add(a,     +val)
-        self.add(b + 1, -val)
+        pass
 
     def get(self, a):
         """Variant, reads t[a]
@@ -67,12 +47,8 @@ class Fenwick:
         :param int i: negative a will return 0
         """
         return self.prefixSum(a)
-# snip}
 
 class FenwickMin:
-    """maintains a tree to allow quick updates and queries
-    of a virtual table t
-    """
     def __init__(self, size):
         """stores a table t and allows updates and queries
         of prefix sums in logarithmic time.

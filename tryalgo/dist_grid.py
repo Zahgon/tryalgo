@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Distances in a grid
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 from collections import deque
 
 
-# snip{
 def dist_grid(grid, source, target=None):
     """Distances in a grid by BFS
 
@@ -41,4 +35,3 @@ def dist_grid(grid, source, target=None):
                 grid[i2][j2] = 't'    # goal is reached
                 return
             Q.append((i2, j2))
-# snip}

@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # coding=utf8
-"""\
-Our Standards
-
-Jill-Jênn Vie et Christoph Dürr - 2020
-"""
 from sys import stdin
 
 
@@ -29,7 +24,6 @@ def readarray(typ):
     return list(map(typ, stdin.readline().split()))
 
 
-# pylint: disable=redefined-outer-name
 def readmatrix(n):
     """
     function to read a matrix

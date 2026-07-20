@@ -1,15 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Prime numbers by Eratosthene
-nombre premiers <n
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{ eratosthene
-# pylint: disable=redefined-outer-name
 def eratosthene(n):
     """Prime numbers by sieve of Eratosthene
 
@@ -26,11 +18,8 @@ def eratosthene(n):
             for j in range(i * i, n, i):
                 P[j] = False
     return answ
-# snip}
 
 
-# snip{ gries_misra
-# pylint: disable=redefined-outer-name
 def gries_misra(n):
     """Prime numbers by the sieve of Gries-Misra
     Computes both the list of all prime numbers less than n,
@@ -51,21 +40,15 @@ def gries_misra(n):
                 break
             factor[p * x] = p  # p is the smallest factor of p * x
     return primes, factor
-# snip}
 
 
-# pylint: disable=redefined-outer-name, missing-docstring
 if __name__ == "__main__":
 
-    # compare the running times and show the ratio between the performances
 
     from time import time
 
     def test(f, n):
-        start = time()
-        for _ in range(10):
-            f(n)
-        return time() - start
+        pass
 
     print("eratosthene\tgries_misra\tratio")
     n = 4

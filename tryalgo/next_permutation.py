@@ -1,19 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Next permutation
-prochaine permuation
-
-jill-jênn vie et christoph dürr - 2014-2020
-"""
 
 from sys import argv
 import sys
 from tryalgo.our_std import readint, readstr
 
 
-# snip{
-# pylint: disable=redefined-outer-name
 def next_permutation(tab):
     """find the next permutation of tab in the lexicographical order
 
@@ -40,11 +32,8 @@ def next_permutation(tab):
         i += 1
         j -= 1
     return True
-# snip}
 
 
-# snip{ word_addition
-# pylint: disable=redefined-outer-name
 def convert(word, ass):
     """
     solves a cryptogram in the style SEND + MORE = MONEY
@@ -55,7 +44,6 @@ def convert(word, ass):
     return retval
 
 
-# pylint: disable=redefined-outer-name
 def solve_word_addition(S):         # returns number of solutions
     """returns number of solutions"""
     n = len(S)
@@ -76,7 +64,6 @@ def solve_word_addition(S):         # returns number of solutions
         if not next_permutation(tab):
             break
     return count
-# snip}
 
 
 if __name__ == "__main__":

@@ -1,26 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Range minimum query
-Minimum d'une plage --- range minimum query
-
-jill-jenn vie et christoph durr - 2014-2019
-"""
-# pylint: disable=bad-continuation, bad-whitespace, redefined-outer-name
-# pylint: disable=too-many-arguments
 
 from __future__ import print_function
 
 
-# snip{
-# pylint: disable=consider-using-enumerate
 class RangeMinQuery:
-    """Range minimum query
-
-    maintains a table t, can read/write items t[i],
-    and query range_min(i,k) = min{ t[i], t[i + 1], ..., t[k - 1]}
-    :complexity: all operations in O(log n), for n = len(t)
-    """
     def __init__(self, t, INF=float('inf')):
         self.INF = INF
         self.N = 1
@@ -66,33 +50,9 @@ class RangeMinQuery:
         right = self._range_min(2 * p + 1, start + span // 2, span // 2,
                                 i, k)
         return min(left, right)
-# snip}
 
 
-# pylint: disable=missing-docstring, no-else-return,
-# pylint: disable=anomalous-backslash-in-string
 class LazySegmentTree:
-    """maintains a tree to allow quick updates and queries on a table.
-
-    This is more general than a Fenwick tree or a tree for MinRangeQuery. Here
-    queries and updates act on index ranges. Updates can be set a range to a
-    value or add a value to a range. Queries can be max, min and sum over an
-    index range. All operations run in time O(log n) for a the table size n.
-    The given ranges are in the form [i,j] where i is included and j excluded.
-    In the recursive calls, node is the index of a node in the tree, and left,
-    right its range. Values can be any numerical values allowing max, min, and
-    sum, such as integers, floating point numbers or fractions (from the class
-    Fraction). Updates over an empty range is valid and does nothing. Queries
-    over an empty range is valid and returns the neutral value -inf, +inf or
-    0.
-
-    If the node is cleared, then maxval, minval, sumval represent for each
-    node the query responses over the corresponding index ranges.  If the node
-    is not clean, it means that lazyset and/or lazyadd contain suspendet
-    update instructions for that node. Clearing a node means propagating these
-    values to the descents in the subtrees, and updating maxval,minval and
-    sumval for that node.
-    """
     def __init__(self, tab):
         """stores an integer table tab.
         will be padded to get a table with a size of a power of 2.
@@ -117,7 +77,6 @@ class LazySegmentTree:
         """maintains the invariant for the given node
         :promize: the lazy values are None/0 for this node
         """
-        # requires node and its direct descends to be clean
         ll = 2 * node
         r = 2 * node + 1
         assert self.lazyset[node] is None
@@ -160,16 +119,16 @@ class LazySegmentTree:
         self._add(i, j, val, 1, 0, self.N)
 
     def set(self, i, j, val):
-        self._set(i, j, val, 1, 0, self.N)
+        pass
 
     def max(self, i, j):
-        return self._max(i, j, 1, 0, self.N)
+        pass
 
     def min(self, i, j):
-        return self._min(i, j, 1, 0, self.N)
+        pass
 
     def sum(self, i, j):
-        return self._sum(i, j, 1, 0, self.N)
+        pass
 
     def _add(self, i, j, val, node, left, right):
         self._clear(node, left, right)
@@ -185,74 +144,22 @@ class LazySegmentTree:
             self._maintain(node)
 
     def _set(self, i, j, val, node, left, right):
-        self._clear(node, left, right)
-        if j <= left or right <= i:
-            return   # disjoint intervals, nothing to do
-        if i <= left and right <= j:
-            self.lazyset[node] = val
-            self.lazyadd[node] = 0
-            self._clear(node, left, right)
-        else:
-            mid = (right + left) // 2
-            self._set(i, j, val, 2 * node, left, mid)
-            self._set(i, j, val, 2 * node + 1, mid, right)
-            self._maintain(node)
+        pass
 
     def _max(self, i, j, node, left, right):
-        if j <= left or right <= i:
-            return float('-inf')   # neutral value for max
-        self._clear(node, left, right)
-        if i <= left and right <= j:
-            return self.maxval[node]
-        else:
-            mid = (right + left) // 2
-            a = self._max(i, j, 2 * node, left, mid)
-            b = self._max(i, j, 2 * node + 1, mid, right)
-            return max(a, b)
+        pass
 
     def _min(self, i, j, node, left, right):
-        if j <= left or right <= i:
-            return float('+inf')   # neutral value for min
-        self._clear(node, left, right)
-        if i <= left and right <= j:
-            return self.minval[node]
-        else:
-            mid = (right + left) // 2
-            a = self._min(i, j, 2 * node, left, mid)
-            b = self._min(i, j, 2 * node + 1, mid, right)
-            return min(a, b)
+        pass
 
     def _sum(self, i, j, node, left, right):
-        if j <= left or right <= i:
-            return 0               # neutral value for sum
-        self._clear(node, left, right)
-        if i <= left and right <= j:
-            return self.sumval[node]
-        else:
-            mid = (right + left) // 2
-            a = self._sum(i, j, 2 * node, left, mid)
-            b = self._sum(i, j, 2 * node + 1, mid, right)
-            return a + b
+        pass
 
     def _dump(self):
-        f = open("tmp.dot", "w")
-        print("digraph G{", file=f)
-        print('0 [label="lazyset/lazyadd/maxval/minval/sumval"]', file=f)
-        for node in range(1, 2 * self.N):
-            s = '%i [label="%s/%i/%s/%s/%s"]' % \
-                (node, self.lazyset[node], self.lazyadd[node],
-                    self.maxval[node], self.minval[node], self.sumval[node])
-            print(s.replace('inf', '∞'), file=f)
-        for node in range(1, self.N):
-            print("%i -> %i" % (node, 2 * node), file=f)
-            print("%i -> %i" % (node, 2 * node + 1), file=f)
-        print("}", file=f)
-        f.close()
+        pass
 
 
-# pylint: disable=protected-access
 if __name__ == '__main__':
-    # execute with: rlwrap python3 range_minimum_query.py
     import sys
     tree = LazySegmentTree([0]*8)
     print("open tmp.dot with graphviz")

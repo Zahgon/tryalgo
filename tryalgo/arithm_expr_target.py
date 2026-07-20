@@ -1,15 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Create arithmetic expression approaching target value
-
-jill-jênn vie, christoph dürr et jean-christophe filliâtre - 2014-2019
-"""
 
 
-# snip{
-# pylint: disable=too-many-locals, too-many-nested-blocks, unnecessary-pass
-# pylint: disable=inconsistent-return-statements, too-many-branches
 def arithm_expr_target(x, target):
     """ Create arithmetic expression approaching target value
     
@@ -20,8 +12,6 @@ def arithm_expr_target(x, target):
     """
     n = len(x)
     expr = [{} for _ in range(1 << n)]
-    # expr[S][val]
-    # = string solely composed of values in set S that evaluates to val
     for i in range(n):
         expr[1 << i] = {x[i]: str(x[i])}   # store singletons
     all_ = (1 << n) - 1
@@ -43,12 +33,9 @@ def arithm_expr_target(x, target):
                             expr[S][vL * vR] = "(%s*%s)" % (eL, eR)
                         if vR != 0 and vL % vR == 0:  # only integer div
                             expr[S][vL // vR] = "(%s/%s)" % (eL, eR)
-    # look for the closest expression from the target
     for dist in range(target + 1):
         for sign in [-1, +1]:
             val = target + sign * dist
             if val in expr[all_]:
                 return "%s=%i" % (expr[all_][val], val)
-    # never reaches here if x contains integers between 0 and target
     pass
-# snip}

@@ -1,19 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-bi-connected components, cut vertices and cut cut-nodes
-
-jill-jenn vie, christoph durr et louis abraham - 2015-2019
-"""
 
 from sys import getrecursionlimit, setrecursionlimit
 
 
-# snip{
-# to ease readiness, variables do not have dfs_ prefix
-# pylint: disable=too-many-locals
-# pylint: disable=too-many-nested-blocks
-# pylint: disable=too-many-branches
 def cut_nodes_edges(graph):
     """Bi-connected components
 
@@ -68,7 +58,6 @@ def cut_nodes_edges(graph):
             if low[node] >= num[node]:
                 cut_edges.append((parent[node], node))
     return cut_nodes, cut_edges
-# snip}
 
 
 def cut_nodes_edges2(graph):
@@ -92,7 +81,6 @@ def cut_nodes_edges2(graph):
     FIN = -3  # already visited
     marked = [NOT] * N  # if >= 0, it means depth within the DFS
 
-    # pylint: disable=inconsistent-return-statements
     def DFS(n, prof=0):
         """
         Recursively search graph, update edge list and returns the first
@@ -114,7 +102,6 @@ def cut_nodes_edges2(graph):
                 if prof and r >= prof:  # only if we are not at root
                     nodes.add(n)
                 m = min(m, r)
-        # root is an articulation point iff it has more than 2 childs
         if prof == 0 and count >= 2:
             nodes.add(n)
         marked[n] = FIN

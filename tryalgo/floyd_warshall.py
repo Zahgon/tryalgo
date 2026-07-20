@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-All pairs shortest paths by Floyd-Warshall
-
-jill-jênn vie, christoph dürr et pascal ortiz - 2014-2019
-"""
 
 
-# snip{
 def floyd_warshall(weight):
     """All pairs shortest paths by Floyd-Warshall
 
@@ -26,7 +20,6 @@ def floyd_warshall(weight):
         if weight[v][v] < 0:      # negative cycle found
             return True
     return False
-# snip}
 
 
 def floyd_warshall2(weight):

@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Depth-first search - DFS
-
-jill-jênn vie et christoph durr - 2015-2019
-"""
 
 from typing import List, Optional
 from . graph import Graph
 
-# snip{ dfs-recursive
 def dfs_recursive(graph: Graph, node: int, seen: List[bool]) -> None:
     """DFS, detect connected component, recursive implementation
 
@@ -23,10 +17,8 @@ def dfs_recursive(graph: Graph, node: int, seen: List[bool]) -> None:
     for neighbor in graph[node]:
         if not seen[neighbor]:
             dfs_recursive(graph, neighbor, seen)
-# snip}
 
 
-# snip{ dfs-iterative
 def dfs_iterative(graph: Graph, start: int, seen: List[bool]) -> None:
     """DFS, detect connected component, iterative implementation
 
@@ -42,10 +34,8 @@ def dfs_iterative(graph: Graph, start: int, seen: List[bool]) -> None:
         if not seen[node]:      # hence the use of reversed
             to_visit.extend(reversed(graph[node]))
             seen[node] = True   # vertex can be multiple times on stack
-# snip}
 
 
-# snip{ dfs-tree
 def dfs_tree(graph: Graph, start: int=0) -> List[Optional[int]]:
     """DFS, build DFS tree in unweighted graph
 
@@ -63,7 +53,6 @@ def dfs_tree(graph: Graph, start: int=0) -> List[Optional[int]]:
                 prec[neighbor] = node
                 to_visit.append(neighbor)
     return prec
-# snip}
 
 
 def dfs_grid_recursive(grid: List[List[str]], i: int, j: int, mark: str='X', free: str='.') -> None:
@@ -85,7 +74,6 @@ def dfs_grid_recursive(grid: List[List[str]], i: int, j: int, mark: str='X', fre
                 dfs_grid(grid, ni, nj)
 
 
-# snip{ dfs-grid
 def dfs_grid(grid, i, j, mark='X', free: str='.') -> None:
     """DFS on a grid, mark connected component, iterative version
 
@@ -107,10 +95,8 @@ def dfs_grid(grid, i, j, mark='X', free: str='.') -> None:
                     grid[i2][j2] == free):
                 grid[i2][j2] = mark  # mark path
                 to_visit.append((i2, j2))
-# snip}
 
 
-# pylint: disable=too-many-nested-blocks, no-else-return
 def find_cycle(graph: Graph) -> Optional[List[int]]:
     """find a cycle in an undirected graph
 

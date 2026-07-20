@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Single source shortest paths by Bellman-Ford
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
-# pylint: disable=unused-variable
 def bellman_ford(graph, weight, source=0):
     """ Single source shortest paths by Bellman-Ford
 
@@ -37,7 +30,6 @@ def bellman_ford(graph, weight, source=0):
         if not changed:                   # fixed point
             return dist, prec, False
     return dist, prec, True
-# snip}
 
 
 def bellman_ford2(graph, weight, source):

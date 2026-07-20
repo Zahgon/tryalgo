@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Eulerian cycle
-
-jill-jênn vie et christoph dürr - 2015-2023
-"""
 
 import random
 from tryalgo.graph import write_graph
 
 
-# snip{ eulerian_tour_undirected
 def eulerian_tour_undirected(graph):
     """Eulerian tour on an undirected graph
 
@@ -38,10 +32,8 @@ def eulerian_tour_undirected(graph):
             Q.append(R.pop())         # add to Q the discovered cycle R
         P.append(start)               # resulting path P is extended
     return P
-# snip}
 
 
-# snip{ eulerian_tour_directed
 def eulerian_tour_directed(graph):
     """Eulerian tour on a directed graph
 
@@ -66,26 +58,10 @@ def eulerian_tour_directed(graph):
             Q.append(R.pop())         # add to Q the discovered cycle R
         P.append(start)               # resulting path P is extended
     return P
-# snip}
 
 
 def write_cycle(filename, graph, cycle, directed):
-    """Write an eulerian tour in DOT format
-
-    :param filename: the file to be written in DOT format
-    :param graph: graph in listlist format, cannot be listdict
-    :param bool directed: describes the graph
-    :param cycle: tour as a vertex list
-    :returns: nothing
-    :complexity: `O(|V|^2 + |E|)`
-    """
-    n = len(graph)
-    weight = [[float('inf')] * n for _ in range(n)]
-    for r in range(1, len(cycle)):
-        weight[cycle[r-1]][cycle[r]] = r
-        if not directed:
-            weight[cycle[r]][cycle[r-1]] = r
-    write_graph(filename, graph, arc_label=weight, directed=directed)
+    pass
 
 
 def random_eulerien_graph(n):
@@ -126,7 +102,6 @@ def is_eulerian_tour_directed(graph, tour):
     if (m != len(arcs) or           # no arc is visited twice
         m != required):             # there are not more arcs in tour than in graph
         return False
-    # implicitly check that every arc in tour exists in the graph
     for u, Gu in enumerate(graph):  # loop over all arcs in the graph
          for v in Gu:
             if (u, v) not in arcs:  # check tour visits every arc
@@ -148,12 +123,10 @@ def is_eulerian_tour_undirected(graph, tour):
     arcs = set(normalize(tour[i], tour[i+1]) for i in range(m))  # all edges in tour
     if len(arcs) != m:          
         return False
-    # check that tour contains only existing arcs (by counting)
     required = sum(len(Gu) for Gu in graph) // 2          # nb of edges in graph
     if (m != len(arcs) or               # no edge is visited twice
         m != required):                 # there are not more edges in tour than in graph
         return False
-    # implicitly check that every arc in tour exists in the graph
     for u, Gu in enumerate(graph):      # loop over all edges in the graph
          for v in Gu:
             if normalize(u, v) not in arcs:    # check tour visits every edges

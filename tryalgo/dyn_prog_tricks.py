@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Dynamic Programming speedup tricks
-
-christoph dürr - jill-jênn vie - 2022
-"""
 
 import sys
 
@@ -25,7 +20,6 @@ def dyn_prog_Monge(W):
     C = [[W[i][i] for j in range(n)] for i in range(n)] # initially C[i,i]=W[i][i]
     K = [[j for j in range(n)] for i in range(n)] # initially K[i,i]=i
     
-    # recursion
     for j_i in range(1, n): # difference between j and i
         for i in range(n - j_i):
             j = i + j_i
@@ -98,7 +92,7 @@ if  __name__ == "__main__":
 
     def readint(): return int(sys.stdin.readline())
     def readstr(): return sys.stdin.readline().strip()
-    def readfloats(): return list(map(float, readstr().split()))
+    pass
  
     n = readint()
     beta = [0] + readfloats()

@@ -1,15 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Find the length of maximal borders by Knuth-Morris-Pratt
-
-jill-jênn vie, christoph dürr et louis abraham - 2014-2019
-inspired from a practical lesson (TP) from Yves Lemaire
-"""
-# pylint: disable=undefined-variable, unused-argument
 
 
-# snip{ maximum_border_length
 def maximum_border_length(w):
     """Maximum string borders by Knuth-Morris-Pratt
 
@@ -27,10 +19,8 @@ def maximum_border_length(w):
             k += 1             # we can increment the border length
         f[i] = k               # we found the maximal border of w[:i + 1]
     return f
-# snip}
 
 
-# snip{ knuth_morris_pratt
 def knuth_morris_pratt(s, t):
     """Find a substring by Knuth-Morris-Pratt
 
@@ -47,10 +37,8 @@ def knuth_morris_pratt(s, t):
         if fi == n:                # found a border of the length of t
             return i - 2 * n       # beginning of the border in s
     return -1
-# snip}
 
 
-# snip{ powerstring_by_border
 def powerstring_by_border(u):
     """Power string by Knuth-Morris-Pratt
 
@@ -63,10 +51,8 @@ def powerstring_by_border(u):
     if n % (n - f[-1]) == 0:       # does the alignment shift divide n ?
         return n // (n - f[-1])    # we found a power decomposition
     return 1
-# snip}
 
 
-# snip{ powerstring_by_find
 def powerstring_by_find(u):
     """Power string using the python find method
 
@@ -75,4 +61,3 @@ def powerstring_by_find(u):
     :complexity: O(len(u)^2), this is due to the naive implementation of string.find
     """
     return len(u) // (u + u).find(u, 1)
-# snip}

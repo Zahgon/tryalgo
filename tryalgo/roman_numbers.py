@@ -1,13 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Evaluate an arithmetic expression
 
-jill-jênn vie et christoph dürr - 2014-2019
-"""
-
-# convert roman numbers
-# pylint: disable=bad-whitespace
 roman = [['', 'I', 'II', 'III', 'IV',  'V',   'VI',  'VII', 'VIII', 'IX'],
          ['', 'X', 'XX', 'XXX', 'XL',  'L',   'LX',  'LXX', 'LXXX', 'XC'],
          ['', 'C', 'CC', 'CCC', 'CD',  'D',   'DC',  'DCC', 'DCCC', 'CM'],
@@ -34,22 +27,6 @@ def roman2int(s):
         pos10 //= 10
     return val
 
-# footnote 1:
-# in C one would write
-#
-# if (strncmp(s + beg, r, strlen(r)) == 0)
-#
-# in C++ the starts_with method does not allow a selection
-# of a substring in s, where the search should start.
-# so you need to write your own function, something like:
-#
-# bool starts_with(const string &s, const string &r, int beg) {
-#     for (int i = 0; i < r.size(); i++) {
-#         if (s[i + beg] != r[i])
-#             return false;
-#     }
-#     return true;
-# }
 
 
 def int2roman(val):

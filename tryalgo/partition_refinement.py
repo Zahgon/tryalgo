@@ -1,22 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Partition refinement
-
-christoph dürr - 2016-2019
-
-log: 10/11/2016 modified to preserve class order after refinement
-     15/11/2016 this was nonsense, moved back
-"""
 
 
 __all__ = ["PartitionRefinement"]
 
 
-# pylint: disable=missing-docstring
 class DoubleLinkedListItem:
-    """Item of a circular double linked list
-    """
 
     def __init__(self, anchor=None):
         """Create a new item to be inserted before item anchor.
@@ -52,8 +41,6 @@ class DoubleLinkedListItem:
 
 
 class PartitionClass(DoubleLinkedListItem):
-    """A partition is a list of classes
-    """
 
     def __init__(self, anchor=None):
         DoubleLinkedListItem.__init__(self, anchor)
@@ -69,8 +56,6 @@ class PartitionClass(DoubleLinkedListItem):
 
 
 class PartitionItem(DoubleLinkedListItem):
-    """A class is a list of items
-    """
 
     def __init__(self, val, theclass):
         DoubleLinkedListItem.__init__(self)
@@ -89,9 +74,6 @@ class PartitionItem(DoubleLinkedListItem):
 
 
 class PartitionRefinement:
-    """This data structure implements an order preserving
-    partition with refinements.
-    """
 
     def __init__(self, n):
         """Start with the partition consisting of the unique class {0,1,..,n-1}
@@ -102,34 +84,10 @@ class PartitionRefinement:
         self.items = [PartitionItem(i, c) for i in range(n)]  # value-ordered
 
     def refine(self, pivot):
-        """Split every class C in the partition into C intersection pivot
-        and C setminus pivot complexity: linear in size of pivot
-        """
-        has_split = []                        # remember which classes split
-        for i in pivot:
-            if 0 <= i < len(self.items):      # ignore if outside of domain
-                x = self.items[i]
-                c = x.theclass                # c = class of x
-                if not c.split:               # possibly create new split class
-                    c.split = PartitionClass(c)
-                    if self.classes is c:
-                        self.classes = c.split   # always point to 1st class
-                    has_split.append(c)
-                x.remove()                    # remove from its class
-                x.theclass = c.split
-                c.split.append(x)             # append to the split class
-        for c in has_split:             # clean information about split classes
-            c.split = None
-            if not c.items:                   # delete class if it became empty
-                c.remove()
-                del c
+        pass
 
     def tolist(self):
-        """produce a list representation of the partition
-        """
-        return [[x.val for x in theclass.items] for theclass in self.classes]
+        pass
 
     def order(self):
-        """Produce a flatten list of the partition, ordered by classes
-        """
-        return [x.val for theclass in self.classes for x in theclass.items]
+        pass

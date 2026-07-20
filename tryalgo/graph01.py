@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Shortest path in a 0,1 weighted graph
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 from collections import deque
 
 
-# snip{
 def dist01(graph, weight, source=0, target=None):
     """Shortest path in a 0,1 weighted graph
 
@@ -44,4 +38,3 @@ def dist01(graph, weight, source=0, target=None):
             else:
                 gray.appendleft(neighbor)
     return dist, prec
-# snip}

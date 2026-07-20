@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Levenshtein edit distance
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
 def levenshtein(x, y):
     """Levenshtein edit distance
 
@@ -18,9 +12,6 @@ def levenshtein(x, y):
     """
     n = len(x)
     m = len(y)
-    # Create the table A
-    #   Row 0 and column 0 are initialized as required
-    #   The remaining entries will be overwritten during the computation
     A = [[i + j for j in range(m + 1)] for i in range(n + 1)]
     for i in range(n):
         for j in range(m):
@@ -28,4 +19,3 @@ def levenshtein(x, y):
                                   A[i + 1][j] + 1,              # delete
                                   A[i][j] + int(x[i] != y[j]))  # subst.
     return A[n][m]
-# snip}

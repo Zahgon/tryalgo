@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Left and right inversions in a table
-
-christoph dürr - 2016-2019
-"""
 
 
-# snip{
-# pylint: disable=too-many-arguments, missing-docstring
 def _merge_sort(tab, tmp, rank, left, right, lo, hi):
     if hi <= lo + 1:             # interval is empty or singleton
         return                   # nothing to do
@@ -32,7 +25,6 @@ def _merge_sort(tab, tmp, rank, left, right, lo, hi):
         rank[k] = tmp[k]
 
 
-# pylint: disable=anomalous-backslash-in-string
 def left_right_inversions(tab):
     """ Compute left and right inversions of each element of a table.
 
@@ -49,4 +41,3 @@ def left_right_inversions(tab):
     rank = list(range(n))
     _merge_sort(tab, tmp, rank, left, right, 0, n)
     return left, right
-# snip}

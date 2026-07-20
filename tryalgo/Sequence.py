@@ -1,16 +1,3 @@
-"""Sequence.py
-
-Doubly-linked circular list for maintaining a sequence of items
-subject to insertions and deletions.
-
-Copyright D. Eppstein, November 2003. Under the MIT licence.
-
-Modified by
-Rami Benelmir, Christoph Dürr, Erisa Kohansal - 2023
-
-we adapted the data structure to store only objects and to permit to replace objects easily.
-we changed the name of the function "append" to "add" for simplifying our code.
-"""
 
 import math
 import sys
@@ -18,10 +5,6 @@ import sys
 class SequenceError(Exception): pass
 
 class Sequence:
-    """Maintain a sequence of items subject to insertions and removals.
-    All sequence operations take constant time except indexing, which
-    takes time proportional to the index.
-    """
 
     def __init__(self, iterable=[], key=id):
         """We represent the sequence as a doubly-linked circular linked list,
@@ -108,24 +91,13 @@ class Sequence:
         del self._next[x], self._prev[x]
 
     def insertAfter(self, x, y):
-        """Add y after x in the sequence."""
-        y = self.key(y)
-        x = self.key(x)
-        self._insafter(x,y)
+        pass
 
     def insertBefore(self, x, y):
-        """Add y before x in the sequence."""
-        y = self.key(y)
-        x = self.key(x)
-        self._insafter(self._prev[x],y)
-        if self._first == x:
-            self._first = y
+        pass
 
     def predecessor(self,x):
-        """Find the previous element in the sequence."""
-        x = self.key(x)
-        prev = self._prev[x]
-        return self._items.get(prev,prev)
+        pass
 
     def successor(self,x):
         """Find the next element in the sequence."""
@@ -134,8 +106,5 @@ class Sequence:
         return self._items.get(next,next)
 
     def replace(self, old, new):
-        """ Replace an object by another one, preserving the position in the sequence
-        """
-        self.insertAfter(old, new)
-        self.remove(old)
+        pass
 

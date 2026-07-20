@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Merge two ordered lists
-
-jill-jênn vie et christoph dürr - 2014-2019
-"""
 
 
-# snip{
 def merge(x, y):
     """Merge two ordered lists
 
@@ -27,4 +21,3 @@ def merge(x, y):
             z.append(y[j])                              # now switch to y
             j += 1
     return z
-# snip}

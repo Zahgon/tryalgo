@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Minimum mean cycle by Karp
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
-# pylint: disable=too-many-locals
 def min_mean_cycle(graph, weight, start=0):
     """Minimum mean cycle by Karp
 
@@ -33,7 +26,6 @@ def min_mean_cycle(graph, weight, start=0):
                 if alt < dist[ell][neighbor]:
                     dist[ell][neighbor] = alt
                     prec[ell][neighbor] = node
-    #                               -- find the optimal value
     valmin = INF
     argmin = None
     for node in range(n):
@@ -41,14 +33,12 @@ def min_mean_cycle(graph, weight, start=0):
         argmax = None
         for k in range(n):
             alt = (dist[n][node] - dist[k][node]) / float(n - k)
-            # do not divide by float(n-k) => cycle of minimal total weight
             if alt >= valmax:     # with >= we get simple cycles
                 valmax = alt
                 argmax = k
         if argmax is not None and valmax < valmin:
             valmin = valmax
             argmin = (node, argmax)
-    #                               -- extract cycle
     if valmin == INF:             # -- there is no cycle
         return None
     C = []
@@ -57,4 +47,3 @@ def min_mean_cycle(graph, weight, start=0):
         C.append(node)
         node = prec[l][node]
     return C[::-1], valmin
-# snip}

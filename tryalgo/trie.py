@@ -1,18 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-trie - correcteur orthographique
 
-jill-jênn vie et christoph dürr - 2014-2019
-"""
 
-# Don't write a Trie class otherwise you cannot represent leaves with None
-
-# snip{
 from string import ascii_letters    # in Python 2 one would import letters
 
 
-# pylint: disable=missing-docstring, too-few-public-methods
 class TrieNode:
     def __init__(self):                            # each node will have
         self.is_word = False                       # 52 children -
@@ -64,7 +56,6 @@ def spell_check(T, w):  # Spell check a word against the trie
         dist += 1          # No match - try increasing the distance
 
 
-# pylint: disable=too-many-return-statements, no-else-return
 def search(T, dist, w, i=0):
     """Searches for w[i:] in trie T with distance at most dist
     """
@@ -88,4 +79,3 @@ def search(T, dist, w, i=0):
         if f is not None:
             return c + f
     return search(T, dist - 1, w, i + 1)        # deletion
-# snip}

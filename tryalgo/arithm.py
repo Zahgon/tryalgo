@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-arithmetic functions
-
-christoph dürr - jill-jênn vie - 2013-2019
-"""
-# pylint: disable=anomalous-backslash-in-string
 
 
-# snip{ pgcd
 def pgcd(a, b):
     """Greatest common divisor for a and b
 
@@ -16,10 +9,8 @@ def pgcd(a, b):
     :complexity: O(log a + log b)
     """
     return a if b == 0 else pgcd(b, a % b)
-# snip}
 
 
-# snip{ bezout
 def bezout(a, b):
     """Bézout coefficients for a and b
 
@@ -39,10 +30,8 @@ def inv(a, p):
     :complexity: O(log a + log p)
     """
     return bezout(a, p)[0] % p
-# snip}
 
 
-# snip{ binom
 def binom(n, k):
     """Binomial coefficients for :math:`n choose k`
 
@@ -53,10 +42,8 @@ def binom(n, k):
     for i in range(k):
         prod = (prod * (n - i)) // (i + 1)
     return prod
-# snip}
 
 
-# snip{ binom_modulo
 def binom_modulo(n, k, p):
     """Binomial coefficients for :math:`n choose k`, modulo p
 
@@ -67,4 +54,3 @@ def binom_modulo(n, k, p):
     for i in range(k):
         prod = (prod * (n - i) * inv(i + 1, p)) % p
     return prod
-# snip}

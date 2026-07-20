@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Fast Exponentiation
-
-jill-jenn vie et christoph durr and louis abraham - 2014-2018
-"""
 
 
 def fast_exponentiation2(a, b, q):
@@ -29,7 +24,6 @@ def fast_exponentiation2(a, b, q):
     return result
 
 
-# snip{
 def fast_exponentiation(a, b, q):
     """Compute (a pow b) % q, alternative shorter implementation
 
@@ -45,4 +39,3 @@ def fast_exponentiation(a, b, q):
         a = (a * a) % q
         b >>= 1
     return result
-# snip}

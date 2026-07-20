@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Maximum flow by Dinic
-
-jill-jênn vie et christoph dürr - 2015-2018
-"""
 
 from collections import deque
 from sys import setrecursionlimit
@@ -14,7 +9,6 @@ from tryalgo.graph import add_reverse_arcs
 setrecursionlimit(5010)  # necessary for big graphs
 
 
-# snip{
 def dinic(graph, capacity, source, target):
     """Maximum flow by Dinic
 
@@ -49,7 +43,6 @@ def dinic(graph, capacity, source, target):
                              up_bound)
 
 
-# pylint: disable=too-many-arguments
 def _dinic_step(graph, capacity, level, flow, u, target, limit):
     """ tenter de pousser le plus de flot de u à target, sans dépasser limit
     """
@@ -70,4 +63,3 @@ def _dinic_step(graph, capacity, level, flow, u, target, limit):
     if val == 0:
         level[u] = None         # remove unreachable node
     return val
-# snip}

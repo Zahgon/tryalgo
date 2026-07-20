@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Union of intervals
-
-jill-jênn vie et christoph dürr - 2014-2019
-"""
 
 
-# snip{
 def intervals_union(S):
     """Union of intervals
 
@@ -30,4 +24,3 @@ def intervals_union(S):
             if nb_open == 0:
                 retval.append((last, x))
     return retval
-# snip}

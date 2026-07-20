@@ -1,19 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Minimum spanning tree by kruskal
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 from math import sqrt
 import random
 
 
-# snip{ union-find
 class UnionFind:
-    """Maintains a partition of {0, ..., n-1}
-    """
     def __init__(self, n):
         self.up_bound = list(range(n))
         self.rank = [0] * n
@@ -46,11 +38,8 @@ class UnionFind:
         else:
             self.up_bound[repr_x] = repr_y
         return True
-# snip}
 
 
-# snip{ kruskal
-# pylint: disable=redefined-outer-name, unused-variable
 def kruskal(graph, weight):
     """Minimum spanning tree by Kruskal
 
@@ -70,7 +59,6 @@ def kruskal(graph, weight):
         if u_f.union(u_idx, v_idx):
             min_span_tree.append((u_idx, v_idx))
     return min_span_tree
-# snip}
 
 
 def dist(a, b):
@@ -81,7 +69,6 @@ def dist(a, b):
                      for i in range(len(a))]))
 
 
-# pylint: disable=pointless-string-statement
 if __name__ == "__main__":
     """
     main function

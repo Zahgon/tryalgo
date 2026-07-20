@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Solving Sudoku (nanpure)
-
-jill-jenn vie et christoph durr - 2014-2019
-"""
-# pylint: disable=missing-docstring, multiple-statements, global-statement
 
 from tryalgo.dancing_links import dancing_links
 
 
 __all__ = ["sudoku"]
 
-# snip{
 N = 3        # global constants
 N2 = N * N
 N4 = N2 * N2
 
 
-# sets
 def assignment(r, c, v): return r * N4 + c * N2 + v
 
 
@@ -34,7 +26,6 @@ def val(a): return a % N2
 def blk(a): return (row(a) // N) * N + col(a) // N
 
 
-# elements to cover
 def rc(a): return row(a) * N2 + col(a)
 
 
@@ -74,4 +65,3 @@ def sudoku(G):
                 G[row(a)][col(a)] = val(a) + 1
         return True
     return False
-# snip}

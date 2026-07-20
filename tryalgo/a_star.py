@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Shortest Path algorithm A*.
-
-jill-jênn vie et christoph dürr - 2023
-"""
 
 from heapq import heappop, heappush
 

@@ -1,24 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Union of rectangles
-
-jill-jênn vie et christoph dürr - 2014-2019
-"""
-# pylint: disable=too-many-arguments, too-many-locals
 
 
-# snip{ union_intervals
 from collections import Counter
-# snip}
 
 
-# weighted variant of tryalgo.range_minimum_query.LazySegmentTree
-# snip{ cover-query
 class CoverQuery:
-    """Segment tree to maintain a set of integer intervals
-    and permitting to query the size of their union.
-    """
     def __init__(self, L):
         """creates a structure, where all possible intervals
         will be included in [0, L - 1].
@@ -63,10 +50,8 @@ class CoverQuery:
                 self.s[p] = self.s[2 * p] + self.s[2 * p + 1]
         else:
             self.s[p] = self.w[p]
-# snip}
 
 
-# snip{ union_intervals
 OPENING = +1  # constants for events
 CLOSING = -1  # -1 has higher priority
 
@@ -91,7 +76,6 @@ def union_intervals(intervals):
             events.append((x1, OPENING))
             events.append((x2, CLOSING))
     previous_x = 0    # arbitrary initial value
-    #                   ok, because opened == 0 at first event
     opened = 0
     for x, offset in sorted(events):
         if opened > 0:
@@ -99,10 +83,8 @@ def union_intervals(intervals):
         previous_x = x
         opened += offset
     return union_size
-# snip}
 
 
-# snip{ union_rectangles
 def union_rectangles(R):
     """Area of union of rectangles.
 
@@ -123,16 +105,13 @@ def union_rectangles(R):
     current_intervals = Counter()
     area = 0
     previous_y = 0  # arbitrary initial value,
-    #                 ok, because union_intervals is 0 at first event
     for y, offset, x1, x2 in sorted(events):         # sweep top down
         area += (y - previous_y) * union_intervals(current_intervals)
         previous_y = y
         current_intervals[x1, x2] += offset
     return area
-# snip}
 
 
-# snip{ union_rectangles_fast
 def union_rectangles_fast(R):
     """Area of union of rectangles
 
@@ -149,17 +128,12 @@ def union_rectangles_fast(R):
         X.add(x2)
         events.append((y1, OPENING, x1, x2))
         events.append((y2, CLOSING, x1, x2))
-    # array of x coordinates in left to right order
     i_to_x = list(sorted(X))
-    # inverse dictionary maps x coordinate to its rank
     x_to_i = {xi: i for i, xi in enumerate(i_to_x)}
-    # nb_current_rectangles[i] = number of rectangles intersected
-    # by the sweepline in interval [i_to_x[i], i_to_x[i + 1]]
     nb_current_rectangles = [0] * (len(i_to_x) - 1)
     area = 0
     length_union_intervals = 0
     previous_y = 0  # arbitrary initial value,
-    #                 because length is 0 at first iteration
     for y, offset, x1, x2 in sorted(events):
         area += (y - previous_y) * length_union_intervals
         i1 = x_to_i[x1]
@@ -173,10 +147,8 @@ def union_rectangles_fast(R):
                 length_union_intervals -= length_interval
         previous_y = y
     return area
-# snip}
 
 
-# snip{ union_rectangles_fastest
 def union_rectangles_fastest(R):
     """Area of union of rectangles
 
@@ -197,13 +169,11 @@ def union_rectangles_fastest(R):
         events.append((y1, OPENING, x1, x2))
         events.append((y2, CLOSING, x1, x2))
     i_to_x = list(sorted(X))
-    # inverse dictionary
     x_to_i = {i_to_x[i]: i for i in range(len(i_to_x))}
     L = [i_to_x[i + 1] - i_to_x[i] for i in range(len(i_to_x) - 1)]
     C = CoverQuery(L)
     area = 0
     previous_y = 0  # arbitrary initial value,
-    #                 because C.cover() is 0 at first iteration
     for y, offset, x1, x2 in sorted(events):
         area += (y - previous_y) * C.cover()
         i1 = x_to_i[x1]
@@ -211,10 +181,8 @@ def union_rectangles_fastest(R):
         C.change(i1, i2, offset)
         previous_y = y
     return area
-# snip}
 
 
-# snip{ union_rectangles_naive
 def rectangles_contains_point(R, x, y):
     """Decides if at least one of the given rectangles contains a given point
     either strictly or on its left or top border
@@ -243,7 +211,6 @@ def union_rectangles_naive(R):
         Y.add(y2)
     j_to_x = list(sorted(X))
     i_to_y = list(sorted(Y))
-    # X and Y partition space into a grid
     area = 0
     for j in range(len(j_to_x) - 1):      # loop over columns in grid
         x1 = j_to_x[j]
@@ -254,4 +221,3 @@ def union_rectangles_naive(R):
             if rectangles_contains_point(R, x1, y1):
                 area += (y2 - y1) * (x2 - x1)  # cell is covered
     return area
-# snip}

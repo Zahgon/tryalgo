@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Largest Rectangular Area in a Histogram
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
-# pylint: disable=len-as-condition
 def rectangles_from_histogram(H):
     """Largest Rectangular Area in a Histogram
 
@@ -24,10 +17,8 @@ def rectangles_from_histogram(H):
         left = right
         while len(S) > 0 and S[-1][1] >= x:
             left, height = S.pop()
-            # first element is area of candidate
             rect = (height * (right - left), left, height, right)
             if rect > best:
                 best = rect
         S.append((left, x))
     return best
-# snip}

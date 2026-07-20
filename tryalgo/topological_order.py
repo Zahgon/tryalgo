@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Topological order
-
-jill-jênn vie et christoph dürr - 2014-2019
-"""
 
 
-# snip{ topological_order_dfs
 def topological_order_dfs(graph):
     """Topological sorting by depth first search
 
@@ -35,10 +29,8 @@ def topological_order_dfs(graph):
                         times_seen[child] = 0
                         to_visit.append(child)
     return order[::-1]
-# snip}
 
 
-# snip{
 def topological_order(graph):
     """Topological sorting by maintaining indegree
 
@@ -61,4 +53,3 @@ def topological_order(graph):
             if indeg[neighbor] == 0:
                 Q.append(neighbor)
     return order
-# snip}

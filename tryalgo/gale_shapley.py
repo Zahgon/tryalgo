@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Stable matching by Gale-Shapley
 
-jill-jênn vie et christoph durr - 2014-2019
-"""
-
-# snip{
 from collections import deque
 
 
-# pylint: disable=no-member
 def gale_shapley(men, women):
     """Stable matching by Gale-Shapley
 
@@ -40,4 +33,3 @@ def gale_shapley(men, women):
             singles.append(spouse[j])  # sorry for spouse[j]
             spouse[j] = i
     return spouse
-# snip}

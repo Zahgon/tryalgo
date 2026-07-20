@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-All sliding windows containing k distinct elements
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
 def windows_k_distinct(x, k):
     """Find all largest windows containing exactly k distinct elements
 
@@ -31,4 +25,3 @@ def windows_k_distinct(x, k):
             j += 1                      # move end of interval
         if dist == k:
             yield (i, j)                # one interval found
-# snip}

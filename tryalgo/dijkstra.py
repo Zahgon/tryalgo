@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Shortest paths by Dijkstra
-
-jill-jênn vie et christoph dürr - 2015-2018
-"""
-# pylint: disable=wrong-import-position
 
 from heapq import heappop, heappush
 from tryalgo.our_heap import OurHeap
 
-# snip{
 
 
 def dijkstra(graph, weight, source=0, target=None):
@@ -47,15 +40,11 @@ def dijkstra(graph, weight, source=0, target=None):
                     prec[neighbor] = node
                     heappush(heap, (dist_neighbor, neighbor))
     return dist, prec
-# snip}
 
 
-# snip{ dijkstra_update_heap
 
 
-# snip}
 
-# snip{ dijkstra_update_heap
 def dijkstra_update_heap(graph, weight, source=0, target=None):
     """single source shortest paths by Dijkstra
        with a heap implementing item updates
@@ -88,4 +77,3 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
                 prec[neighbor] = node
                 heap.update((old, neighbor), (new, neighbor))
     return dist, prec
-# snip}

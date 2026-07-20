@@ -1,24 +1,10 @@
 # -*- coding: utf-8 -*-
-"""\
-skip-list
-
-louis abraham - 2017-2019
-
-Inspired by https://kunigami.blog/2012/09/25/skip-lists-in-python/
-count contains the gap between the positions
-(https://www.cs.bgu.ac.il/~ds112/wiki.files/ds112_ps7.pdf)
-"""
-# pylint: disable=line-too-long, missing-docstring, redefined-outer-name
-# pylint: disable=fixme, super-init-not-called, notimplemented-raised
-# pylint: disable=raising-bad-type, no-member, line-too-long
-# pylint: disable=self-cls-assignment, no-else-raise
 
 from __future__ import print_function
 from collections import namedtuple
 from random import random
 
 
-# TODO: add order_of_key
 
 class AbstractSkipList():
 
@@ -61,18 +47,7 @@ class AbstractSkipList():
         return update, count
 
     def getkth(self, k):
-        "starts from 0"
-        if k >= len(self):
-            raise IndexError
-        k += 1  # self has index -1
-        h = len(self.next) - 1
-        x = self
-        while k:
-            while x.next[h] is None or x.count[h] > k:
-                h -= 1
-            k -= x.count[h]
-            x = x.next[h]
-        return x.key
+        pass
 
     def nextNode(self, key, update=None):
         if update is None:
@@ -84,18 +59,10 @@ class AbstractSkipList():
         return None
 
     def nextKey(self, key):
-        """nextKey(key) >= key"""
-        ans = self.nextNode(key)
-        return (ans.key
-                if ans is not None
-                else None)
+        pass
 
     def lastKey(self, key):
-        """lastKey(key) < key"""
-        update = self._updateList(key)[0]
-        return (update[0].key
-                if update
-                else None)
+        pass
 
     def find(self, key, update=None):
         ans = self.nextNode(key, update)
@@ -104,14 +71,10 @@ class AbstractSkipList():
                 else None)
 
     def insert(self, node):
-        # nup = len(self.next)
         while len(self.next) < len(node.next):
             self.next.append(None)
             self.count.append(self._len)
         update, index = self._updateList(node.key)
-        # print(index)
-        # for i in range(nup, len(self.count)):
-        #     self.count[i] += 1
         nindex = index[0] + 1
         if self.find(node.key, update) is None:
             self._len += 1
@@ -166,7 +129,6 @@ class SortedSet(AbstractSkipList):
             return x
         except StopIteration:
             raise KeyError('pop from an empty set')
-            # raise KeyError('pop from an empty set') from None
 
     def add(self, key):
         height = self.randomHeight()
@@ -219,14 +181,7 @@ if __name__ == '__main__':
     from random import sample
 
     def display(a):
-        while a is not None:
-            # if sys.version_info.major < 3:
-            #     print (a.key if a.key is not None else 'N') + ' | ',
-            # else:
-            print(a.key if a.key is not None else 'N', end=' | ')
-            print(*('(%s, %s)' % (i.key if i is not None else 'N', c)
-                    for i, c in zip(a.next, a.count)))
-            a = a.next[0]
+        pass
     n = SortedSet()
     for i in sample(range(5), 5):
         n.add(i)

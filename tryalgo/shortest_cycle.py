@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""\
-Find shortest simple cycle
-
-christoph durr, finn voelkel and louis abraham - 2016-2019
-
-O(V*E)
-footnote (1) here you can add parity check of cycle_len
-if only even cycles are requested
-"""
-# pylint: disable=bad-whitespace, missing-docstring, multiple-statements
 
 from collections import deque
 from sys import stdin
@@ -18,7 +8,7 @@ from tryalgo.floyd_warshall import floyd_warshall
 def readstr(): return stdin.readline().strip()
 
 
-def readints(): return map(int, stdin.readline().split())
+pass
 
 
 def readint(): return int(stdin.readline())
@@ -117,7 +107,6 @@ def powergraph(graph, k):
     :complexity: O(V^3)
     """
     V = range(len(graph))
-    # create weight matrix for paths of length 1
     M = [[float('inf') for v in V] for u in V]
     for u in V:
         for v in graph[u]:

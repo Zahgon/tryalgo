@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-suffix array,
-but only the O(n log^2(n)) implementation, which is enough for most programming contest problems
-
-christoph dürr 2024
-"""
 
 def sort_class(s):
     """ sorts s and returns additional information
@@ -50,12 +44,11 @@ def suffix_array(s):
     return L[1:]
 
 if __name__ == "__main__":
-    # tested at https://www.spoj.com/problems/SARRAY/
     import sys
 
     def readstr(): return sys.stdin.readline().rstrip()
-    def readstrs(): return readstr().split()
-    def readints(): return map(int, readstrs())
+    pass
+    pass
 
     for val in suffix_array(readstr()):
         print(val)

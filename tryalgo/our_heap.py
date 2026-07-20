@@ -1,24 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-A min heap
-
-christoph dürr et jill-jênn vie - 2015-2019
-"""
 
 
-# snip{
 class OurHeap:
-    """ min heap
-
-    * heap: is the actual heap, heap[1] = index of the smallest element
-    * rank: inverse of heap with rank[x]=i iff heap[i]=x
-    * n: size of the heap
-
-    :complexity: init O(n log n), len O(1),
-                other operations O(log n) in expectation
-                and O(n) in worst case, due to the usage of a dictionary
-    """
     def __init__(self, items):
         self.heap = [None]  # index 0 will be ignored
         self.rank = {}
@@ -29,13 +13,7 @@ class OurHeap:
         return len(self.heap) - 1
 
     def push(self, x):
-        """Insert new element x in the heap.
-           Assumption: x is not already in the heap"""
-        assert x not in self.rank
-        i = len(self.heap)
-        self.heap.append(x)    # add a new leaf
-        self.rank[x] = i
-        self.up(i)             # maintain heap order
+        pass
 
     def pop(self):
         """Remove and return smallest element"""
@@ -47,9 +25,7 @@ class OurHeap:
             self.rank[x] = 1    # to the root
             self.down(1)        # maintain heap order
         return root
-    # snip}
 
-    # snip{ our_heap_up_down
     def up(self, i):
         """The value of heap[i] has decreased. Maintain heap invariant."""
         x = self.heap[i]
@@ -92,4 +68,3 @@ class OurHeap:
             self.down(i)
         else:
             self.up(i)
-# snip}

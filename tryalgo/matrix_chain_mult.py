@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Matrix chain multiplication
-multiplication de matrices
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
 def matrix_mult_opt_order(M):
     """Matrix chain multiplication optimal order
 
@@ -35,7 +28,6 @@ def matrix_mult_opt_order(M):
     return opt, arg
 
 
-# pylint: disable=unused-variable
 def matrix_chain_mult(M):
     """Matrix chain multiplication
 
@@ -48,7 +40,6 @@ def matrix_chain_mult(M):
 
 
 def _apply_order(M, arg, i, j):
-    # --- multiply matrices from M[i] to M[j] included
     if i == j:
         return M[i]
     k = arg[i][j]        # --- follow placement of parentheses
@@ -59,4 +50,3 @@ def _apply_order(M, arg, i, j):
     col_B = range(len(B[0]))
     return [[sum(A[a][b] * B[b][c] for b in row_B)
              for c in col_B] for a in row_A]
-# snip}

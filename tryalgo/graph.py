@@ -1,83 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Reading graphs from files and writing into files
 
-jill-jênn vie et christoph dürr - 2015-2019
-"""
-# pylint: disable=bad-whitespace, line-too-long, missing-docstring
-# pylint: disable=dangerous-default-value, too-many-locals, too-many-branches
-
-# from __future__ import annotations
 from typing import List, Dict, Union, Any
 
 def readval(file, ty):
-    """Reads a line from file with an item of type ty
-
-    :param file: input stream, for example sys.stdin
-    :param ty: a type, for example int
-    :returns: an element of type ty
-    """
-    return ty(file.readline())
+    pass
 
 
 def readtab(fi, ty):
-    """Reads a line from file with a space separated list
-       of items of type ty
-
-    :param file: input stream, for example sys.stdin
-    :param ty: a type, for example int
-    :returns: a tuple with elements of type ty
-    """
-    return tuple(map(ty, fi.readline().split()))
+    pass
 
 
-# pylint: disable=no-else-return
 def read_graph(filename, directed=False, weighted=False, default_weight=None):
-    """Read a graph from a text file
-
-    :param filename: plain text file. All numbers are separated by space.
-        Starts with a line containing n (#vertices) and m (#edges).
-        Then m lines follow, for each edge.
-        Vertices are numbered from 0 to n-1.
-        Line for unweighted edge u,v contains two integers u, v.
-        Line for weighted edge u,v contains three integers u, v, w[u,v].
-    :param directed: true for a directed graph, false for undirected
-    :param weighted: true for an edge weighted graph
-    :returns: graph in listlist format, possibly followed by weight matrix
-    :complexity: O(n + m) for unweighted graph,
-                 :math:`O(n^2)` for weighted graph
-    """
-    with open(filename, 'r') as f:
-        while True:
-            line = f.readline()         # ignore leading comments
-            if line[0] != '#':
-                break
-        nb_nodes, nb_edges = tuple(map(int, line.split()))
-        graph = [[] for u in range(nb_nodes)]
-        if weighted:
-            weight = [[default_weight] * nb_nodes for v in range(nb_nodes)]
-            for v in range(nb_nodes):
-                weight[v][v] = 0
-            for _ in range(nb_edges):
-                u, v, w = readtab(f, int)
-                graph[u].append(v)
-                weight[u][v] = w
-                if not directed:
-                    graph[v].append(u)
-                    weight[v][u] = w
-            return graph, weight
-        else:
-            for _ in range(nb_edges):
-                # si le fichier contient des poids, ils seront ignorés
-                u, v = readtab(f, int)[:2]
-                graph[u].append(v)
-                if not directed:
-                    graph[v].append(u)
-            return graph
+    pass
 
 
-# pylint: disable=too-many-arguments, singleton-comparison
 def write_graph(dotfile, graph, directed=False,
                 node_label=None, arc_label=None, comment="",
                 node_mark=set(), arc_mark=set()):
@@ -102,7 +39,6 @@ def write_graph(dotfile, graph, directed=False,
         if comment:
             f.write('label="%s";\n' % comment)
         V = range(len(graph))
-        #                              -- vertices
         for u in V:
             if node_mark and u in node_mark:
                 f.write('%d [style=filled, color="lightgrey", ' % u)
@@ -112,7 +48,6 @@ def write_graph(dotfile, graph, directed=False,
                 f.write('label="%u [%s]"];\n' % (u, node_label[u]))
             else:
                 f.write('shape=circle, label="%u"];\n' % u)
-        #                              -- edges
         if isinstance(arc_mark, list):
             arc_mark = set((u, arc_mark[u]) for u in V)
         for u in V:
@@ -142,7 +77,6 @@ def write_graph(dotfile, graph, directed=False,
         f.write("}")
 
 
-# snip{ tree_representations
 def tree_prec_to_adj(prec, root=0):
     """Transforms a tree given as predecessor table into adjacency list form
 
@@ -180,11 +114,8 @@ def tree_adj_to_prec(graph, root=0):
                 to_visit.append(neighbor)
     prec[root] = None            # put the standard mark for root
     return prec
-# snip}
 
 
-# snip{ add_reverse_arcs
-# pylint: disable=unidiomatic-typecheck
 def add_reverse_arcs(graph, capac=None):
     """Utility function for flow algorithms that need for every arc (u,v),
     the existence of an (v,u) arc, by default with zero capacity.
@@ -207,31 +138,13 @@ def add_reverse_arcs(graph, capac=None):
                 else:
                     assert type(graph[v]) is dict
                     graph[v][u] = 0
-# snip}
-
-# -----------------------------------------------------------------------------
-# transformations between different graph representations
-
-# listlist is an adjacency list G,
-#        where G[u] is the list of vertices v such that there is an arc (u,v)
-# if the graph is weighted, the weights are represented by a matrix W
-#        such that W[u][v] is the weight of arc (u,v)
-
-# listdict is an arc weighted adjacency list G,
-#        where G[u] is a dictionary.
-#        For each arc (u,v), G[u][v] is the weight of the arc.
-
-# dictdict is an arc weighted adjacency dictionary G,
-#        where G[u] is a dictionary.
-#        For each arc (u,v), G[u][v] is the weight of the arc.
-
-# matrix is an adjacency matrix M,
-#        such that M[u][v] is None if there is no arc (u,v)
-#        otherwise it is the weight of the arc.
-#        Value M[u][v]=True can be used for unweighted graphs.
 
 
-# pylint: disable=no-else-return
+
+
+
+
+
 def matrix_to_listlist(weight):
     """transforms a squared weight matrix in a adjacency table of type listlist
     encoding the directed graph corresponding to the entries of the matrix
@@ -307,8 +220,6 @@ def dictdict_to_listdict(dictgraph):
             sparse[name_to_node[u]][name_to_node[v]] = dictgraph[u][v]
     return sparse, name_to_node, node_to_name
 
-# -----------------------------------------------------------------------------
-# for shortest paths
 
 
 def extract_path(prec, v):
@@ -328,8 +239,6 @@ def extract_path(prec, v):
     return L[::-1]
 
 
-# -----------------------------------------------------------------------------
-# for exporting flows in dot format
 
 def make_flow_labels(graph, flow, capac):
     """Generate arc labels for a flow in a graph with capacities.
@@ -349,12 +258,8 @@ def make_flow_labels(graph, flow, capac):
                 arc_label[u][v] = None   # do not show negative flow arcs
     return arc_label
 
-# -----------------------------------------------------------------------------
-# for creating a graph using vertex names
 
 
-# pylint: disable=arguments-out-of-order
-# snip{ class_graph
 class GraphNamedVertices:
     def __init__(self):
         self.neighbors = []
@@ -369,27 +274,12 @@ class GraphNamedVertices:
         return self.neighbors[v]
 
     def add_node(self, name):
-        if name not in self.name2node:
-            self.name2node[name] = len(self.name2node)
-            self.node2name.append(name)
-            self.neighbors.append([])
-            self.weight.append({})
-        return self.name2node[name]
+        pass
 
     def add_edge(self, name_u, name_v, weight_uv=None):
-        self.add_arc(name_u, name_v, weight_uv)
-        self.add_arc(name_v, name_u, weight_uv)
+        pass
 
     def add_arc(self, name_u, name_v, weight_uv=None):
-        """Adds an arc between two given nodes, eventually with a given arc weight. 
-        In case of multiple arcs between the same pairs of nodes, only the lightest one is kept.
-        Adds the given nodes, if they are not already present.
-        """
-        u = self.add_node(name_u)
-        v = self.add_node(name_v)
-        self.neighbors[u].append(v)
-        if v not in self.weight[u] or weight_uv < self.weight[u][v]:
-            self.weight[u][v] = weight_uv
-# snip}
+        pass
 
 Graph = Union[List[List[int]], List[Dict[int, Any]], GraphNamedVertices]

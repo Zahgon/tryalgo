@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Maximum flow by Edmonds-Karp
-
-jill-jênn vie et christoph dürr - 2015-2019
-"""
 
 from collections import deque
 from tryalgo.graph import add_reverse_arcs
 
 
-# snip{
 def _augment(graph, capacity, flow, source, target):
     """find a shortest augmenting path
     """
@@ -59,4 +53,3 @@ def edmonds_karp(graph, capacity, source, target):
             flow[v][u] -= delta
             v = u
     return (flow, sum(flow[source]))  # flow network, amount of flow
-# snip}

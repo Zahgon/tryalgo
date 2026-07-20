@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-subsetsum
-
-jill-jênn vie et christoph dürr - 2015-2019
-"""
 
 
-# snip{
 def three_partition(x):
     """partition a set of integers in 3 parts of same total value
 
@@ -24,4 +18,3 @@ def three_partition(x):
             if A & B == 0 and f[A] == f[B] and 3 * f[A] == f[-1]:
                 return (A, B, ((1 << len(x)) - 1) ^ A ^ B)
     return None
-# snip}

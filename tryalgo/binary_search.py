@@ -1,12 +1,6 @@
 #!/usr/bin/env pypy3
 # -*- coding: utf-8 -*-
-"""\
-Binary search
 
-jill-jênn vie, christoph dürr et louis abraham - 2014-2020
-"""
-
-# pylint: disable=redefined-outer-name
 
 from tryalgo.our_std import readint, readarray
 
@@ -14,11 +8,7 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
            "optimized_binary_search_lower", "optimized_binary_search",
            "ternary_search"]
 
-# Fill the Cisterns
-# http://www.spoj.com/problems/CISTFILL/
-# [!] python3 is too slow for this problem
 
-# snip{ discrete_binary_search
 
 
 def discrete_binary_search(tab, lo, hi):
@@ -37,10 +27,8 @@ def discrete_binary_search(tab, lo, hi):
         else:
             lo = mid + 1
     return lo
-# snip}
 
 
-# snip{ continuous_binary_search
 def continuous_binary_search(f, lo, hi, gap=1e-4):
     """Binary search for a function
 
@@ -59,7 +47,6 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
         else:
             lo = mid
     return lo
-# snip}
 
 
 def optimized_binary_search_lower(tab, logsize):
@@ -81,7 +68,6 @@ def optimized_binary_search_lower(tab, logsize):
     return lo
 
 
-# snip{ optimized_binary_search
 def optimized_binary_search(tab, logsize):
     """Binary search in a table using bit operations
 
@@ -99,7 +85,6 @@ def optimized_binary_search(tab, logsize):
             hi ^= intervalsize
         intervalsize >>= 1
     return hi
-# snip}
 
 
 def ternary_search(f, lo, hi, gap=1e-10):
@@ -122,17 +107,9 @@ def ternary_search(f, lo, hi, gap=1e-10):
     return lo
 
 
-# pylint: disable=cell-var-from-loop
 if __name__ == "__main__":
     def volume(level):
-        """
-        Computes the volume of a set of cuboids.
-        """
-        vol = 0
-        for base, height, ground in rect:
-            if base < level:
-                vol += ground * min(level - base, height)
-        return vol
+        pass
 
     for test in range(readint()):
         n = readint()

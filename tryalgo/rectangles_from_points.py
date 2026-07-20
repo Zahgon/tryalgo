@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-How many rectangles can be formed from a set of points
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 
-# snip{
 def rectangles_from_points(S):
     """How many rectangles can be formed from a set of points
 
@@ -30,4 +24,3 @@ def rectangles_from_points(S):
             else:
                 pairs[signature] = [(i, j)]
     return answ
-# snip}

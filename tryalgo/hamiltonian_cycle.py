@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Hamiltonian Cycle
-
-jill-jenn vie et christoph durr - 2023
-"""
 
 
-# snip{ 
 def hamiltonian_cycle(weight):
     """Hamiltonian Cycle
 
@@ -16,9 +10,6 @@ def hamiltonian_cycle(weight):
     :complexity: O(n^2 2^n)
     """
     n = len(weight)
-    # A[S][v] = minimum weight path from vertex n-1, 
-    #           then visiting all vertices in S exactly once, 
-    #           and finishing in v (which is not in S)
     A = [[float('inf')] * n for _ in range(1 << (n - 1))]
     for v in range(n):                  # base case
         A[0][v] = weight[n - 1][v] 
@@ -33,5 +24,4 @@ def hamiltonian_cycle(weight):
                             A[S][v] = alt
     S = (1 << (n - 1)) - 1              # {0, 1, ..., n - 2}
     return A[S][n - 1]
-# snip}
 

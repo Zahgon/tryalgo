@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Exact set cover by the dancing links algorithm
-
-jill-jenn vie et christoph durr - 2014-2018
-"""
 
 __all__ = ["dancing_links"]
 
 
-# snip{ liens-dansants-cell
-# pylint: disable=missing-docstring
 class Cell:
     def __init__(self, horiz, verti, S, C):
         self.S = S
@@ -47,10 +40,8 @@ class Cell:
     def unhide_horiz(self):
         self.R.L = self
         self.L.R = self
-# snip}
 
 
-# snip{ liens-dansants-cover
 def cover(c):            # c = heading cell of the column to cover
     assert c.C is None   # must be a heading cell
     c.hide_horiz()
@@ -75,10 +66,8 @@ def uncover(c):
             j = j.L
         i = i.U
     c.unhide_horiz()
-# snip}
 
 
-# snip{ liens-dansants-exploration
 def dancing_links(size_universe, sets):
     """Exact set cover by the dancing links algorithm
 
@@ -102,7 +91,6 @@ def dancing_links(size_universe, sets):
     return None
 
 
-# pylint: disable=missing-docstring
 def solve(header, sol):
     if header.R == header:     # the instance is empty => solution found
         return True
@@ -130,4 +118,3 @@ def solve(header, sol):
         r = r.D
     uncover(c)
     return False
-# snip}

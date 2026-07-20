@@ -1,24 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Orienting mirrors to allow connectivity by a laser beam
 
-jill-jênn vie et christoph dürr - 2014-2019
-"""
-
-# snip{ laser-miroir-preparation
-# directions
 UP = 0
 LEFT = 1
 DOWN = 2
 RIGHT = 3
-# orientations None:? 0:/ 1:\
 
-# destination UP          LEFT        DOWN           RIGHT
 reflex = [[RIGHT, LEFT], [DOWN, UP], [LEFT, RIGHT], [UP, DOWN]]
 
 
-# pylint: disable=unused-variable, unused-argument
 def laser_mirrors(rows, cols, mir):
     """Orienting mirrors to allow reachability by laser beam
 
@@ -29,7 +19,6 @@ def laser_mirrors(rows, cols, mir):
                 mir[-1]= laser exit.
     :complexity: :math:`O(2^n)`
     """
-    # build structures
     n = len(mir)
     orien = [None] * (n + 2)
     orien[n] = 0      # arbitrary orientations
@@ -53,10 +42,8 @@ def laser_mirrors(rows, cols, mir):
     if solve(succ, orien, n, RIGHT):      # exploration
         return orien[:n]
     return None
-# snip}
 
 
-# snip{ laser-miroir-exploration
 def solve(succ, orien, i, direc):
     """Can a laser leaving mirror i in direction direc reach exit ?
 
@@ -80,4 +67,3 @@ def solve(succ, orien, i, direc):
         orien[j] = None
         return False
     return solve(succ, orien, j, reflex[direc][orien[j]])
-# snip}

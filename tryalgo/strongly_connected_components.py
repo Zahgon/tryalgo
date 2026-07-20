@@ -1,17 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Strongly connected components
-composantes fortement connexes
-
-jill-jênn vie et christoph dürr - 2015-2018
-"""
 
 __all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse"]
 
 
-# snip{ sccp-tarjan-recursif
-# pylint: disable=global-variable-undefined
 def tarjan_recursif(graph):
     """Strongly connected components by Tarjan, recursive implementation
 
@@ -52,11 +44,8 @@ def tarjan_recursif(graph):
         if dfs_num[node] is None:
             dfs(node)
     return sccp
-# snip}
 
 
-# snip{ sccp-tarjan
-# pylint: disable=too-many-locals, redefined-outer-name, too-many-nested-blocks
 def tarjan(graph):
     """Strongly connected components by Tarjan, iterative implementation
 
@@ -107,10 +96,8 @@ def tarjan(graph):
                         times_seen[child] = 0
                         to_visit.append(child)
     return sccp
-# snip}
 
 
-# snip{ sccp-kosaraju
 def kosaraju_dfs(graph, nodes, order, sccp):
     """
     kosaraju depth-first-search over graph
@@ -158,4 +145,3 @@ def kosaraju(graph):
     kosaraju_dfs(graph, range(n), order, [])
     kosaraju_dfs(reverse(graph), order[::-1], [], sccp)
     return sccp[::-1]  # follow inverse topological order
-# snip}

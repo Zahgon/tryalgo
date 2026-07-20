@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Pareto sets
-
-jill-jenn vie et christoph durr - 2022
-"""
 from tryalgo.fenwick import FenwickMin
 
 def pareto2d(points):
@@ -32,7 +27,6 @@ def pareto3d(points):
     :returns: a list of non-dominated points
     :complexity: $O(n\\log n)$
     """
-    # compute the ranks, it is ok to have multple y-values in the list
     y_values = [y for x,y,z in points]
     y_values.sort()
     rank = {}

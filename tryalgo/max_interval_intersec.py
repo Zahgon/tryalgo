@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Sweepline algorithm technique
-
-jill-jênn vie et christoph dürr - 2014-2019
-"""
 
 
-# snip{
-# pylint: disable=bad-whitespace
 def max_interval_intersec(S):
     """determine a value that is contained in a largest number
     of given intervals
@@ -26,4 +19,3 @@ def max_interval_intersec(S):
         if best[0] < c:
             best = (c, x)
     return best
-# snip}

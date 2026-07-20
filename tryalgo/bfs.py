@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Breadth-first search (bfs)
 
-christoph dürr - jill-jênn vie - 2015-2019, 2023
-"""
-
-# snip{
 from collections import deque
 
 
@@ -31,7 +25,6 @@ def bfs(graph, start=0):
                 prec[neighbor] = node
                 to_visit.appendleft(neighbor)
     return dist, prec
-# snip}
 
 
 def bfs_implicit(graph, start, end):
@@ -54,7 +47,6 @@ def bfs_implicit(graph, start, end):
                 prec[neighbor] = node
                 to_visit.appendleft(neighbor)
                 if end in prec:
-                    # solution found
                     L = [end]       # backtrack the shortest path
                     while prec[L[-1]] is not None:
                         L.append(prec[L[-1]])

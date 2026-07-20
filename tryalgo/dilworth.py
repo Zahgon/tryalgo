@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Decompose DAG into a minimum number of chains
-
-jill-jenn vie et christoph durr - 2015-2018
-"""
 
 from tryalgo.bipartite_matching import max_bipartite_matching
 
 
-# snip{
 def dilworth(graph):
     """Decompose a DAG into a minimum number of chains by Dilworth
 
@@ -30,4 +24,3 @@ def dilworth(graph):
                 u = match[u]
             nb_chains += 1
     return part
-# snip}

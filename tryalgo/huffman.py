@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Huffman code
-
-jill-jenn vie et christoph durr - 2014-2022
-"""
 
 from heapq import heappush, heappop
 
 
-# snip{
 def huffman(freq):
     """Huffman code
 
@@ -54,4 +48,3 @@ def extract(code, tree, prefix):
         prefix.pop()
     else:
         code[tree] = ''.join(prefix)  # extract codeword from prefix
-# snip}

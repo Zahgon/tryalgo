@@ -1,20 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""\
-Evaluate an arithmetic expression
-
-jill-jenn vie et christoph durr - 2014-2020
-"""
-# IPCELLS
-# http://www.spoj.com/problems/IPCELLS/
 
 
 from tryalgo.our_std import readint, readstr
 
 
-# snip{ arithm_expr_eval
-# pylint: disable=redefined-outer-name
-# pylint: disable=inconsistent-return-statements
 def arithm_expr_eval(cell, expr):
     """Evaluates a given expression
 
@@ -42,14 +32,11 @@ def arithm_expr_eval(cell, expr):
     else:
         cell[expr] = arithm_expr_eval(cell, cell[expr])
         return cell[expr]
-# snip}
 
 
-# snip{ arithm_expr_parse
 PRIORITY = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
 
 
-# pylint: disable=redefined-outer-name
 def arithm_expr_parse(line_tokens):
     """Constructs an arithmetic expression tree
 
@@ -76,11 +63,9 @@ def arithm_expr_parse(line_tokens):
         else:                # tok is an identifier
             vals.append(tok)
     return vals.pop()
-# snip}
 
 
 if __name__ == "__main__":
-    # this main program is here to be tested on the online judge
     for test in range(readint()):
         cell = {}
         readstr()                     # consume the empty line
